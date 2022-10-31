@@ -109,7 +109,16 @@ int[,] liczbyIntDwuwymiarowe = {
     { 30, 31, 32} //  x2
 };
 
+
 Console.WriteLine(liczbyIntDwuwymiarowe[0, 0]); // pierwsza liczba z pierwszego wiersza: 10
 Console.WriteLine(liczbyIntDwuwymiarowe[0, 1]); // druga liczba z pierwszego wiersza: 11
 Console.WriteLine(liczbyIntDwuwymiarowe[0, 2]); // trzecia liczba z pierwszego wiersza: 12
 Console.WriteLine(liczbyIntDwuwymiarowe[2, 2]); // ostatnia liczba z ostatniego wiersza: 32
+
+// METODA W NOWYM SZABLONIE - nie moze byc public, wiec nie dawajcie nic przed void/typem
+ShowMessage();
+
+void ShowMessage()
+{
+    Console.WriteLine("HELLO");
+}
