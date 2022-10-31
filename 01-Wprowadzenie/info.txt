@@ -1,0 +1,24 @@
+---- INSTALACJA
+
+1. .NET SDK - https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.402-windows-x64-installer
+2. Visual Studio - https://visualstudio.microsoft.com/pl/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false
+3. Visual Studio Code - https://code.visualstudio.com/docs/?dv=win
+
+WAZNE - instaluj wszystkiue programy w jezyku angielskim! Nie dodawaj jezyka polskiego nigdzie!
+
+Przy instalacji VS wybierz opcje:
+- .NET desktop build tools
+- Web development build tools
+
+
+---- Narzedzie .NET w terminalu
+
+Komendy:
+dotnet info -> info o wersjach .net
+dotnet new -> lista wszystkich projektow do utworzenia
+dotnet new sln -> utworzenie solucji (nazwa jak folder w ktorym jestes)
+dotnet new console -> utworzenie nowej aplikacji konsolowej (nazwa jak folder w ktorym jestes)
+dotnet sln add xxx -> dodanie folderu z aplikacja do solucji, gdzie xxx to nazwa folderu
+dotnet buil -> buildowanie aplikacji w celu zobaczenia warnings/errors (musisz byc w folderze z apka)
+dotnet run -> uruchomienie aplikacji (musisz byc w folderze z apka)
+
