@@ -167,7 +167,6 @@ Console.WriteLine(string.Join("; ", oceny));
 
 // BTW -> string.Empty to jest TO SAMO, co pusty cudzyslow ""
 
-
 // string.Format() -> to metoda ktora byla protoplasta interpolacji w C#
 // Pozwala na podanie string w srodku ktorego podajesz {liczba}
 // nastepnie kazdy kolejny argument to jest wartosc ktora ma podstawiac pod te {liczba}
