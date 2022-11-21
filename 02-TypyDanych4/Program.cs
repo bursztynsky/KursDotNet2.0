@@ -109,7 +109,6 @@ int[,] liczbyIntDwuwymiarowe = {
     { 30, 31, 32} //  x2
 };
 
-
 Console.WriteLine(liczbyIntDwuwymiarowe[0, 0]); // pierwsza liczba z pierwszego wiersza: 10
 Console.WriteLine(liczbyIntDwuwymiarowe[0, 1]); // druga liczba z pierwszego wiersza: 11
 Console.WriteLine(liczbyIntDwuwymiarowe[0, 2]); // trzecia liczba z pierwszego wiersza: 12
@@ -122,3 +121,164 @@ void ShowMessage()
 {
     Console.WriteLine("HELLO");
 }
+
+// W C# mozemy robic 'nieskonczona' liczbe wymiarow w tablicach
+// TABLICA TRZYWYMIAROWA
+int[,,] liczbyIntTrzywymiarowo =
+{
+    {
+        {0, 0, 0}, //subSubElement1
+        {1, 1, 1}, //subSubElement2
+        {2, 2, 2}  //subSubElement3
+    },
+    {
+        {3, 3, 3}, //subSubElement4
+        {4, 4, 4}, //subSubElement5
+        {5, 5, 5}  //subSubElement6
+    },
+    {
+        {6, 6, 6}, //subSubElement7
+        {7, 7, 7}, //subSubElement8
+        {8, 8, 8}  //subSubElement9
+    }
+};
+
+Console.WriteLine($"subSubElement1: {liczbyIntTrzywymiarowo[0, 0, 0]} {liczbyIntTrzywymiarowo[0, 0, 1]} {liczbyIntTrzywymiarowo[0, 0, 2]}");
+Console.WriteLine($"subSubElement2: {liczbyIntTrzywymiarowo[0, 1, 0]} {liczbyIntTrzywymiarowo[0, 1, 1]} {liczbyIntTrzywymiarowo[0, 1, 2]}");
+Console.WriteLine($"subSubElement3: {liczbyIntTrzywymiarowo[0, 2, 0]} {liczbyIntTrzywymiarowo[0, 2, 1]} {liczbyIntTrzywymiarowo[0, 2, 2]}");
+Console.WriteLine($"subSubElement4: {liczbyIntTrzywymiarowo[1, 0, 0]} {liczbyIntTrzywymiarowo[1, 0, 1]} {liczbyIntTrzywymiarowo[1, 0, 2]}");
+Console.WriteLine($"subSubElement5: {liczbyIntTrzywymiarowo[1, 1, 0]} {liczbyIntTrzywymiarowo[1, 1, 1]} {liczbyIntTrzywymiarowo[1, 1, 2]}");
+Console.WriteLine($"subSubElement6: {liczbyIntTrzywymiarowo[1, 2, 0]} {liczbyIntTrzywymiarowo[1, 2, 1]} {liczbyIntTrzywymiarowo[1, 2, 2]}");
+Console.WriteLine($"subSubElement7: {liczbyIntTrzywymiarowo[2, 0, 0]} {liczbyIntTrzywymiarowo[2, 0, 1]} {liczbyIntTrzywymiarowo[2, 0, 2]}");
+Console.WriteLine($"subSubElement8: {liczbyIntTrzywymiarowo[2, 1, 0]} {liczbyIntTrzywymiarowo[2, 1, 1]} {liczbyIntTrzywymiarowo[2, 1, 2]}");
+Console.WriteLine($"subSubElement9: {liczbyIntTrzywymiarowo[2, 2, 0]} {liczbyIntTrzywymiarowo[2, 2, 1]} {liczbyIntTrzywymiarowo[2, 2, 2]}");
+
+
+// OSTATNI TYP TALBICY - JAGGED ARRAY
+// Istnieje jeszcze tzw. jagged array (postrzepiona tablica?, tablica w tablicy)
+// Jest to po prostu tablica tablic i co najciekawsze, moze miec ona rozne rozmiary tablic!
+int[][] jaggedInt = new int[5][]; //najpierw jej ustalamy ile ma miec w sobie tablic
+jaggedInt[0] = new int[2]; //tu dodajemy 2 elementowa
+jaggedInt[1] = new int[5]; //tu 5 elementowa
+jaggedInt[2] = new int[8]; //tu 8 elementowa itd
+jaggedInt[3] = new int[10];
+jaggedInt[4] = new int[4];
+
+//Mozemy rowniez od razu dodac im wartosci
+jaggedInt[0] = new int[] { 0, 0 };
+jaggedInt[1] = new int[] { 1, 1, 1, 1, 1 };
+jaggedInt[2] = new int[] { 2, 2, 2, 2, 2, 2, 2, 2 };
+jaggedInt[3] = new int[] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+jaggedInt[4] = new int[] { 4, 4, 4, 4 };
+
+// Mozemy tez od razu zainicjowac wszystko na raz
+int[][] jaggedInt2 = new int[][]
+{
+    new int[]{1, 1, 1}, //musimy jednak niestety uzyc operatora new, poniewaz w tym przypadku tworzymy nowa tablice, nie jak w przypadku multidimensional array po prostu dodajemy element
+    new int[]{2, 2, 2, 2},
+    new int[]{3, 3},
+    new int[]{4, 4, 4},
+};
+
+Console.WriteLine("Tablica numer 1:");
+Console.WriteLine(jaggedInt2[0][0]);
+Console.WriteLine(jaggedInt2[0][1]);
+Console.WriteLine(jaggedInt2[0][2]);
+Console.WriteLine("Tablica numer 2:");
+foreach (int value in jaggedInt2[1])
+{
+    Console.WriteLine(value);
+}
+
+Console.WriteLine("Tablica numer 3:");
+for (int idx = 0; idx < jaggedInt2[2].Length; idx++)
+{
+    Console.WriteLine(jaggedInt2[2][idx]);
+}
+
+Console.WriteLine("Tablica numer 4:");
+int indeks = 0;
+while (indeks < jaggedInt2[3].Length)
+{
+    Console.WriteLine(jaggedInt2[3][indeks]);
+
+    indeks++;
+}
+
+// ZASTOSOWANIE: np. w wykresach slupkowych, gdzie zmienna chart to jaggedArray z tablica tablic z warotsciami w wykresie
+// przechodzisz po kolei po tablicach warotsci i sobie wyswietlasz slupki
+
+Console.WriteLine("----------");
+
+// METODY PRZYDATKE W TYPIE ARRAY
+
+// PROPERTIES (Własciwosci)
+// array.Length -> zwraca dlugosc tablicy
+// array.Rank -> zwraca ilosc wymiarow tablicy
+
+string[] array1 = new string[] { "a", "b", "c" };
+string[,] array2 = new string[,] { { "a1", "a2" }, { "b1", "b2" }, { "c1", "c2" } };
+
+Console.WriteLine("Tablica array1 ma dlugosc " + array1.Length + ", posiada " + array1.Rank + " wymiarow");
+Console.WriteLine("Tablica array2 ma dlugosc " + array2.Length + ", posiada " + array2.Rank + " wymiarow");
+// Shift + Alt + F -> FORMATOWANIE KODU W DOKUMENCIE
+
+// Clone() -> zwraca kopię danej tablicy
+// UWAGA: w przypadku Clone() dostajemy blad 'Cannot implicitly convert type 'object' to 'string[]'
+// to dlatego, ze .NET nie jest w stanie wydedukowac poprawnie na jaki typ ma kopiowac dana tablice (czemu? nie wiem)
+// wiec musimy konwertowac to sami uzywajac KONWERSJI JAWNEJ
+// najszybciej -> rzutowanie
+// string[] copyOfArray1 = array1.Clone();
+string[] copyOfArray1 = (string[])array1.Clone();
+
+foreach (string key in copyOfArray1)
+{
+    Console.WriteLine(key);
+}
+Console.WriteLine("---");
+
+// CopyTo() ->kopiuje wartosci od 0 do podanej dlugosci
+//          pierwszy argument, do tablica DO ktorej kopiuje
+//          drugi argument to indeks do ktorej zaczynam kopiowanie
+// MINUS: po pierwsze, najpierw musze zrobic zmienna z tablica do ktorej bede kopiowal wartosci ORAZ musze sam podaj jej dlugosc odpowiednia do wrezultatu
+// TODO: napraw to z wykorzystaniem tablicy dwuwymiarowej!!!
+// string[,] copyOfArray2 = new string[1];
+// array2.CopyTo(copyOfArray2, 2);
+
+// foreach (string key in copyOfArray2)
+// {
+//     Console.WriteLine(key);
+// }
+// Console.WriteLine("---");
+
+string[] copyOfArray1_1 = new string[3];
+array1.CopyTo(copyOfArray1_1, 0);
+
+foreach (string key in copyOfArray1_1)
+{
+    Console.WriteLine(key);
+}
+
+Console.WriteLine("---");
+
+// Array.Fill() -> wypletnia tablice podana wartoscia
+// ZADANIE DLA WAS: sprawdz czy mozna uzyc poprawnie metody generujacej liczby losowe
+string[] emptyArr = new string[5];
+Array.Fill(emptyArr, "Not-Empty");
+foreach (string key in emptyArr)
+{
+    Console.WriteLine(key);
+}
+Console.WriteLine("---");
+
+// CIEKAWOSTKA
+// GetValue i SetValue
+// Zamiast dostawac sie za pomoca nawiasow [] i numeru indeksu mozna uzyc tych metod
+emptyArr.SetValue("ChangedValue", 1);
+Console.WriteLine(emptyArr.GetValue(1));
+Console.WriteLine("Cala tablica:");
+foreach (string key in emptyArr)
+{
+    Console.WriteLine(key);
+}
+Console.WriteLine("---");
