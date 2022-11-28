@@ -104,8 +104,6 @@ for (int idx = 0; idx < str3.Length; idx++)
     Console.Write(str3[idx]);
 }
 Console.Write('\n');
-
-
 // ---------
 // FOREACH
 // ---------
