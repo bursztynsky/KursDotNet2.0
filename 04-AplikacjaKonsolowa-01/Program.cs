@@ -106,7 +106,7 @@ while (!shutDown)
             // tutaj podaje ryzykowny kod
             // TO JEST TA RYZYKOWNA LINIA
             var parsedValue = int.Parse(number); // tutaj jak walnie blad to kod ponizej sie nie wywola
-            // ale przekieruje nas do catcxh
+            // ale przekieruje nas do catch
 
             Console.WriteLine("Podana liczba -> " + parsedValue);
 
