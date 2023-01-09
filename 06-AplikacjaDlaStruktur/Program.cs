@@ -58,7 +58,6 @@ while (!shutDown)
             DeleteCat();
             break;
         case "E":
-            // TODO: edycja kotow
             EditCat();
             break;
         default:
@@ -165,14 +164,6 @@ void RemoveFromList(string name)
         return; // metoda przerywa sie w tej linii kiedy nie ma zadnego kota
     }
 
-    #region Opcjolany kod weryfikujacy czy istnieje kot
-    // UWAGA:
-    // Moglibysmy najpierw przejsc element po elemencie i sprawdzic czy kot istnieje
-    // To jest bartdzo praktyka I NAGMINNIE BEDZIEMY TEGO UZYWAC W KOLEKCJACH
-    // Niestety tutaj mamy tablice i tak czy siak bede musial przejsc po jej wsyzsktich elementach
-    // wiec lepiej jest przejsc po nich raz (i najzywej nie uzyc nowej tablicy bo nie znaleziono kota o taki imieniu)
-    // niz przechodzic dwa razy po takiej tablicy np. mamy 1 milion kotow, wiec przjedziemy po 2 milionach zamiast po jednym
-
     var existsProvidedCat = false;
     foreach (var existingCat in cats)
     {
@@ -188,7 +179,6 @@ void RemoveFromList(string name)
 
         return;
     }
-    #endregion
 
     var newArray = new Cat[cats.Length - 1];
     var idx = 0;
