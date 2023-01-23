@@ -1,20 +1,4 @@
-﻿// ------------------------------
-// Stworz aplikacje, ktora umozliwi tworzenie listy zwierzat
-// czyt. dodawanie i usuwanie zwierzat oraz edycja istniejacych
-// *aplikacja nie zapisuje danych w np. bazie, wiec wszystko to co wprowadzimy do aplikacji
-// zniknie w momencie jej wylaczenia
-// ------------------------------
-
-// DEBUGOWANIE SKROTY KLAWIATUROWE:
-// 1. F5 -> continue, czyli idz do nastepnego breakpoint (jesli nie ma nastepnego, to kod wykonuje sie dalej bez zatrzymywania
-// 2. F10 -> move next, tzn ze przesuwamy sie o linjke w dol (oczywiscie pomija puste linie)
-// 3. F11 -> step into, tzn wchodzimy w wywolywana metode i sie zatrzymujemy w pierwszej jej linijce kodu
-// 4. Ctrl + Shift + F9 -> usuwa wszystkie breakpoint
-
-// WAZNY SKROT:
-// Ctrl + F12 -> jak najedziesz kursorem na nazwe metody i klikniesz F12 to przekieruje Cie do kodu tej metody
-
-using _06_AplikacjaDlaStruktur;
+﻿using _06_AplikacjaDlaStruktur;
 
 var shutDown = false;
 var cats = new Cat[] {
@@ -35,7 +19,7 @@ var cats = new Cat[] {
     },
 };
 
-Console.WriteLine("Hello in the vet-application!");
+Console.WriteLine("Hello in the vet-application (using class instead of structure)!");
 
 while (!shutDown)
 {
@@ -208,23 +192,6 @@ void RemoveFromList(string name)
     {
         Console.WriteLine($"There is not cat with the name '{name}'");
     }
-
-    #region Kod ciekawostka jak to zrobic szybciej wbudowana metoda FindAll()
-    // Skorzystamy z metody Array.FindAll()
-    // Zwraca ona nowa tablice z elemntami spelniajacymi podany warunek
-    // Tzn. Mozemy to zrobic tak, ze zwrocimy sobie nowa tablicy bez kota o podanym imieniu,
-    // dzieki czemu skrocimy proces 'usuwania' kota z tablicy
-
-    //cats = Array
-    //    //             tutaj mamy warunek ktory mowi CZY kopiowac wartosc czy nie
-    //    //             korzystamy tutaj z lambda expression inaczej nazywane anonimowa funkcja
-    //    //             co to znaczy? To jest po prostu metoda jak kazda inna np. DeleteDat() ale nie ma swojej nazwy
-    //    // Budowa lambda expression:
-    //    //  zmiennaBedacaElementemPoElemencieSprawdzanymWTablicy => tutajMamLinjkeKoduKtoraZwracaTrueLubFalse
-    //    .FindAll(cats, cat => !string.Equals(cat.Name, name, StringComparison.OrdinalIgnoreCase))
-    //    // Musze jeszcze na koniec odpalic metode ToArray() -> o tym przy interfejsach
-    //    .ToArray();
-    #endregion
 }
 
 void DeleteCat()
@@ -267,19 +234,8 @@ void ValidateToEdit(string providedValue)
 
 void EditCat()
 {
-    // Edycja polega na wyszukaniu kota po jego imieniu i po znalezeniu umozliwiamy edycje imienia kota oraz
-    // lub wlascicela
-    // KROKI:
-    // 1. Potrzebujemy zweryfikowac czy podano prawidlowe imie kota
-    // 2. Jesli nie - zmuszczamy do podania imienia az bedzie ok
-    // 3. Jesli mamy imie kota i wiemy ze istnieje w tablicy to wyciagamy sobie tego kota i pokazujemy w konsoli
-    // 4. Pytamy uzytkownika czy chce zmienic imie lub imie wlasciciela
-    // 5. Umozliwia zmiane (weryfikujac podane dane np. sprawdzjac czy taki kot juz istnieje)
-    // 6. Po poprawnej zmianie wyswietlamy odpowiedni komunikat
-
     var success = false;
 
-    //var catToEditName = ""; // to jest to samo co ponizej
     var catToEditName = string.Empty;
 
     // -- ETAP1: Wyciagniecie od uzytkownika imienia kota do edycji
@@ -307,12 +263,25 @@ void EditCat()
 
     // -- ETAP2: Pobieranie kota po jego imieniu
     success = false;
+
+    // Kiedy robie nowa zmienna z klasa w srodku (uzywam slowa new)
+    // to pod spodem dzieje sie to:
+    // 1. Tworzone jest w nowej komorce pamieci miejsce na nowa zmienna
+    // 2. Kiedy tworze pusta klase (nie przekazuje zadnych danych jak np. imie) to w miejscu w tej komorce pamieci
+    // tworzony jest obiekt Cat z domyslnymi wartosciami
     var catToEdit = new Cat();
 
     while (!success)
     {
         foreach (var existingCat in cats)
             if (string.Equals(existingCat.Name, catToEditName, StringComparison.OrdinalIgnoreCase))
+                // KLUCZOWA LINIA
+                // Tutaj jest sytuacja ze do zmiennej ktora posiada wartosc typu class Cat przypisuje inna
+                // wartosc typu class Car
+                // W PRZECIWIENSTWIE do struktur w miejscu w pamieci gdzie lezy zmienna catToEdit
+                // nie tworzymy nowego kota o takich samych wartosciach ALE mowimy mu, ze
+                // ma on teraz wskazywac na adres w pamieci gdzie lezy znaleziony kot 'existingCat'
+                // i od teraz zmienna 'catToEdit' posiada REFERENCJE do kota w tablicy ktorego sobie znalezlismy
                 catToEdit = existingCat;
 
         success = true;
@@ -348,9 +317,15 @@ void EditCat()
 
     // -- ETAP4: Wykonujemy operacje edycji
 
+    Console.WriteLine("Kot przed edycja ma imie: " + catToEdit.Name);
+
     if (editOperationType == EditOperationType.ChangeName)
     {
+        // do metody przekazuje zmienna catToEdit
+        // catToEdit wskazuje na komurke w pamieci gdzie mam REFERENCJE do kota w tablicy
+        // W srodku metody tworzy sie nowa zmienna o nazwie 'cat' i do niej KOPIUJE REFERENCJE do kota z tablicy
         ChangeName(catToEdit);
+        Console.WriteLine("Kot po edycji ma imie: " + catToEdit.Name);
     }
     else if (editOperationType == EditOperationType.ChangeOwner)
     {
@@ -358,17 +333,14 @@ void EditCat()
     }
     else if (editOperationType == EditOperationType.ChangeBoth)
     {
-        var editedCat = ChangeName(catToEdit);
-        ChangeOwner(editedCat);
+        ChangeName(catToEdit);
+        ChangeOwner(catToEdit);
     }
 }
 
-// Ta metoda zmienia imie kota w tablicy ORAZ zwraca obiekt tego edytowanego kota
-// (bym wiedzial jakie jest jego nowe imie)
-Cat ChangeName(Cat cat)
+void ChangeName(Cat cat)
 {
     var success = false;
-    var editedCat = new Cat();
 
     while (!success)
     {
@@ -386,38 +358,15 @@ Cat ChangeName(Cat cat)
             continue;
         }
 
-        // Taka edycja kota NIE ZADZIALA w przypadku typu struct
-        // zmienna cat, ktora jest przekazywana do metody to inna zmienna w innej komorce pamieci
-        // niz ten kot oryginalny jaki jest w mojej tablicy kotow (taka jest specyfika typow wartosciowych)
-        // BO TYPY WARTOSCIOWE PRZEKAZYWANE DO FUNCKJI SA NOWA KOPIA TEGO CO PRZEKAZUJEMY
-        // i nie wiedza gdzie w pamieci lezy ten oryginal
-        //cat.Name = providedValue;
-
-        // Musimy wiec zrobic tak:
-        // 1. Idziemy do tablicy i przechodzimy po niej (z indeksami czyli for) az znajdziemy kota
-        //    ktory ma to samo imie to ten kot ktorego edytujemy (ale nie jego nowe imie tylko stare)
-        // 2. Edytujemy bezposrednio w tablicy ten element po indeksie czyli zmieniamy mu imie lub ownera lub oba
-        for (int i = 0; i < cats.Length; i++)
-        {
-            if (string.Equals(cats[i].Name, cat.Name, StringComparison.OrdinalIgnoreCase))
-            {
-                // edytuje imie kota w tablicy by zapisac mu to nowe imie
-                cats[i].Name = providedValue;
-
-                // ustawiam ta zmienna jaka zwroce czyli kota PO EDYCJI
-                editedCat = cats[i];
-
-                break; // wychodze z for bo wiem, ze nie ma po co isc dalej w array bo nie ma wiecej kotow
-                // o takim imieniu
-            }
-        }
+        // DZIEKI TEMU ze jest to klasa to moge bezposrednio zmienic imie .Name na cos nowego
+        // i za wartosc bedzie zapisana w kocie z tablicy
+        // BO DO ZMIENNYCH PRZYPISALEM REFERENCJE DO TEGO KOTA Z TABLICY
+        cat.Name = providedValue;
 
         Console.WriteLine("You have changes the name successfully!");
 
         success = true;
     }
-
-    return editedCat;
 }
 
 void ChangeOwner(Cat cat)
@@ -440,15 +389,7 @@ void ChangeOwner(Cat cat)
             continue;
         }
 
-        for (int i = 0; i < cats.Length; i++)
-        {
-            if (string.Equals(cats[i].Name, cat.Name, StringComparison.OrdinalIgnoreCase))
-            {
-                cats[i].Owner = providedValue;
-
-                break;
-            }
-        }
+        cat.Owner = providedValue;
 
         Console.WriteLine("You have changed the Owner successfully!");
 

@@ -5,31 +5,35 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05-Struktury", "05-Struktury\05-Struktury.csproj", "{C599965A-101F-457F-B908-D378E18196CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-AplikacjaDlaStruktur", "06-AplikacjaDlaStruktur\06-AplikacjaDlaStruktur.csproj", "{D6C9EF04-820D-4371-8A62-294C834FCBE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06-AplikacjaDlaStruktur", "06-AplikacjaDlaStruktur\06-AplikacjaDlaStruktur.csproj", "{D6C9EF04-820D-4371-8A62-294C834FCBE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Wprowadzenie", "01-Wprowadzenie\01-Wprowadzenie.csproj", "{7314FED0-3CB9-447F-A613-5E6ED60FF8EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-Wprowadzenie", "01-Wprowadzenie\01-Wprowadzenie.csproj", "{7314FED0-3CB9-447F-A613-5E6ED60FF8EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-TypyDanych1", "02-TypyDanych1\02-TypyDanych1.csproj", "{E7AF6D75-E5EF-42E8-9E8D-F9E28A8CF0C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-TypyDanych1", "02-TypyDanych1\02-TypyDanych1.csproj", "{E7AF6D75-E5EF-42E8-9E8D-F9E28A8CF0C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-TypyDanych2", "02-TypyDanych2\02-TypyDanych2.csproj", "{02BBF8F3-556D-4AD3-A103-C4BAAF500A4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-TypyDanych2", "02-TypyDanych2\02-TypyDanych2.csproj", "{02BBF8F3-556D-4AD3-A103-C4BAAF500A4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-TypyDanych3", "02-TypyDanych3\02-TypyDanych3.csproj", "{2004AD19-0241-4869-8E70-69A70B7AE437}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-TypyDanych3", "02-TypyDanych3\02-TypyDanych3.csproj", "{2004AD19-0241-4869-8E70-69A70B7AE437}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-TypyDanych4", "02-TypyDanych4\02-TypyDanych4.csproj", "{82185E8E-44E3-4316-A0D7-3683DE826B02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-TypyDanych4", "02-TypyDanych4\02-TypyDanych4.csproj", "{82185E8E-44E3-4316-A0D7-3683DE826B02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-TypyDanych5", "02-TypyDanych5\02-TypyDanych5.csproj", "{62AE8526-1B7C-49BA-9A9D-3AE38E8B7D0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-TypyDanych5", "02-TypyDanych5\02-TypyDanych5.csproj", "{62AE8526-1B7C-49BA-9A9D-3AE38E8B7D0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-TypyDanych6", "02-TypyDanych6\02-TypyDanych6.csproj", "{5013AF91-0713-489A-BA6E-374878ADDD53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-TypyDanych6", "02-TypyDanych6\02-TypyDanych6.csproj", "{5013AF91-0713-489A-BA6E-374878ADDD53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-TypyDanych7", "02-TypyDanych7\02-TypyDanych7.csproj", "{2B9F6C6A-C1B7-4F81-B246-CC3EF554F0E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-TypyDanych7", "02-TypyDanych7\02-TypyDanych7.csproj", "{2B9F6C6A-C1B7-4F81-B246-CC3EF554F0E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-TypyDanych8", "02-TypyDanych8\02-TypyDanych8.csproj", "{AFDAFE8A-DE12-4D7C-98E8-9D55A212B7AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-TypyDanych8", "02-TypyDanych8\02-TypyDanych8.csproj", "{AFDAFE8A-DE12-4D7C-98E8-9D55A212B7AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-ZmienneStaleMetody", "03-ZmienneStaleMetody\03-ZmienneStaleMetody.csproj", "{AF8A6111-6C48-435A-B242-E8FF1644B392}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-ZmienneStaleMetody", "03-ZmienneStaleMetody\03-ZmienneStaleMetody.csproj", "{AF8A6111-6C48-435A-B242-E8FF1644B392}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-AplikacjaKonsolowa-01", "04-AplikacjaKonsolowa-01\04-AplikacjaKonsolowa-01.csproj", "{38467433-4707-4E68-8E17-B4E24AC279E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-AplikacjaKonsolowa-01", "04-AplikacjaKonsolowa-01\04-AplikacjaKonsolowa-01.csproj", "{38467433-4707-4E68-8E17-B4E24AC279E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-AplikacjaKonsolowa-02", "04-AplikacjaKonsolowa-02\04-AplikacjaKonsolowa-02.csproj", "{F9AC2E57-7BD5-432F-ACCE-A2C765610461}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-AplikacjaKonsolowa-02", "04-AplikacjaKonsolowa-02\04-AplikacjaKonsolowa-02.csproj", "{F9AC2E57-7BD5-432F-ACCE-A2C765610461}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-AplikacjaDlaKlas", "07-AplikacjaDlaKlas\07-AplikacjaDlaKlas.csproj", "{AFF3905C-28FA-4B76-B751-B91C42C4A655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08-Kolekcje", "08-Kolekcje\08-Kolekcje.csproj", "{A3C34A60-DE22-400E-9046-EE977EB915EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +97,14 @@ Global
 		{F9AC2E57-7BD5-432F-ACCE-A2C765610461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9AC2E57-7BD5-432F-ACCE-A2C765610461}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9AC2E57-7BD5-432F-ACCE-A2C765610461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF3905C-28FA-4B76-B751-B91C42C4A655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF3905C-28FA-4B76-B751-B91C42C4A655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF3905C-28FA-4B76-B751-B91C42C4A655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF3905C-28FA-4B76-B751-B91C42C4A655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3C34A60-DE22-400E-9046-EE977EB915EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C34A60-DE22-400E-9046-EE977EB915EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3C34A60-DE22-400E-9046-EE977EB915EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3C34A60-DE22-400E-9046-EE977EB915EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
