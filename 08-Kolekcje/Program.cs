@@ -336,7 +336,6 @@ var audi = carsList.Find(car => car.Id == 3);
 Console.WriteLine(audi.Brand + " " + audi.Model);
 
 
-
 bool IsTen(int num)
 {
     return num == 10;
