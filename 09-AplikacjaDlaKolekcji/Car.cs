@@ -26,20 +26,20 @@ namespace _09_AplikacjaDlaKolekcji
         // 2. Pola / Wlasciwosci -> wtedy dane pole/wlasciwosc wspoldzili wartosc ze wszystkimi instancjami klasy i moze
         // byc przez nie modyfikana
         // 3. Metoda -> wtedy dana metoda jest wsplodzielona i moze byc wykorzystana nawet bez tworzenia instancji klasy
-        public static int LastId { get; set; }
-        public int Id { get; }
+        //public static int LastId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Model { get; set; }
 
         public Car()
         {
-            // Proces tworzenia ID
-            // 1. Biore LastId i zwiekszam o jeden (dzieki temu w systemie pierwszy Car ma 1, drugi 2 itd.)
-            // 2. Ustawiam Id na LastId (zwiekszone o 1)
+        }
 
-            LastId++;
-
-            Id = LastId;
+        public Car(int id, string name, string model)
+        {
+            Id = id;
+            Name = name;
+            Model = model;
         }
 
         // Object posiada metode ToString ktora dla klas zwraca jej nazwe
@@ -58,7 +58,15 @@ namespace _09_AplikacjaDlaKolekcji
             // sobie na konsoli najpierw to, co by zwrocila domyslna metoda ToString z object
             //Console.WriteLine(base.ToString());
 
-            return $"Id:{Id} Name:{Name} Model:{Model}";
+            //return $"Id:{Id} Name:{Name} Model:{Model}";
+            // plij CSV: linijka po linijce zapisywane sa dane, zas oddzielone sa one srednikiem
+            // PS: pierwsza lunia to nazwy kolumn
+            // np.
+            // Id;Name;Model
+            // 1;Toyota;Yaris
+            // 2;Audi;Q7
+            //return $"Id:{Id} Name:{Name} Model:{Model}";
+            return $"{Id};{Name};{Model}";
         }
     }
 }
