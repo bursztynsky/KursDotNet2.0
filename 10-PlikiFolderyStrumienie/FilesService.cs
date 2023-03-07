@@ -49,8 +49,8 @@ namespace _10_PlikiFolderyStrumienie
 
         public void GenerateRandomValues()
         {
-            var min = 10;
-            var max = 15;
+            var min = 2;
+            var max = 6;
 
             var random = new Random();
 
@@ -93,6 +93,70 @@ namespace _10_PlikiFolderyStrumienie
                         }
                     }
                 }
+            }
+        }
+
+        public void RenameFolders()
+        {
+            var success = false;
+
+            while (!success)
+            {
+                Console.WriteLine("Choose if you want to add a prefix or suffix: \n[1] - prefix\n[2] - suffix");
+
+                var value = Console.ReadLine();
+
+                var isPrefix = false;
+
+                switch (value)
+                {
+                    case "1":
+                        isPrefix = true;
+                        break;
+                    case "2":
+                        isPrefix = false;
+                        break;
+                    default:
+                        Console.WriteLine("You've provided a wrong value");
+                        continue;
+                }
+
+                var name = isPrefix ? "prefix" : "suffix";
+                Console.WriteLine($"Provide a {name}:");
+
+                var newFolderName = Console.ReadLine();
+
+                // zbieramy foldery w naszym folderze
+                var directories = Directory.GetDirectories(_pathToDirectory);
+
+                // tworzymy nowe foldery
+                var newFolders = new List<string>();
+
+                var idx = 1;
+                foreach (var folder in directories)
+                {
+                    // tworzymy nowy folder
+                    var newFullFolderName = isPrefix == true
+                        ? $"{newFolderName}{idx}"
+                        : $"{idx}{newFolderName}";
+
+                    var newFolderPath = $"{_pathToDirectory}\\{newFullFolderName}";
+
+                    if (!Directory.Exists(newFolderPath))
+                    {
+                        Directory.CreateDirectory(newFolderPath);
+                    }
+
+                    idx++;
+                }
+
+                foreach(var folder in directories)
+                {
+                    // zbieramy pliki ze starego folderu i przenosimy do nowego
+                    Directory.Move(folder, newFolderPath);
+                }
+
+                success = true;
             }
         }
     }

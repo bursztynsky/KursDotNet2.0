@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08-Kolekcje", "08-Kolekcje\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09-AplikacjaDlaKolekcji", "09-AplikacjaDlaKolekcji\09-AplikacjaDlaKolekcji.csproj", "{F1B1EF40-95C8-45A5-91EA-D3AB6B79EBD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10-PlikiFolderyStrumienie", "10-PlikiFolderyStrumienie\10-PlikiFolderyStrumienie.csproj", "{C35A9D57-20F1-4B99-8549-D6DD5AEBE96F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10-PlikiFolderyStrumienie", "10-PlikiFolderyStrumienie\10-PlikiFolderyStrumienie.csproj", "{C35A9D57-20F1-4B99-8549-D6DD5AEBE96F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

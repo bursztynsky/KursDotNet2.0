@@ -56,6 +56,7 @@ while (!shutDown)
     Console.WriteLine("Type [1] Show all files and directories in the path");
     Console.WriteLine("Type [2] Remove all files and directories in the path");
     Console.WriteLine("Type [3] Generates random files and directories in the path");
+    Console.WriteLine("Type [4] Rename all folders");
     Console.WriteLine("Type [EXIT] for closing the app");
 
     var operation = Console.ReadLine();
@@ -83,6 +84,9 @@ while (!shutDown)
             break;
         case "3":
             service.GenerateRandomValues();
+            break;
+        case "4":
+            service.RenameFolders();
             break;
         case "EXIT":
             shutDown = true;
