@@ -2,7 +2,7 @@
 //                          TYPY
 // ---------------------------------------------------------
 
-// C# jest jezykiem mocno typowanym - jako programista kontrolujesz jaki typ jest wpisywany do zmiennej i bedzie zawsze to ten sam co podales.
+// C# jest jezykiem silnie typowanym - jako programista kontrolujesz jaki typ jest wpisywany do zmiennej i bedzie zawsze to ten sam co podales.
 //                                    .NET na biezaco sprawdza czy do zmiennej typu calkowitego wpisujesz wartosc calkowita, czy moze jednak tekst
 //                                    Jesli podasz wartosc inna niz typ zmiennej, to mamy blad
 

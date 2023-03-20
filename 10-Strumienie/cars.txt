@@ -1,0 +1,14 @@
+﻿Toyota ;Yaris; 2001
+Audi;Q7;2013
+Audi;Q7;
+Fiat;Punto;2137
+2137
+Fiat;2137
+Nissan;Primera;1997
+;Primera;1232
+;;
+Nissan;Primera;1998
+NissanPrimera1998
+Nissan;;
+Toyota;Yaris;2011
+Audi;Q3;2022
