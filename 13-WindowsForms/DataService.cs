@@ -15,8 +15,17 @@ namespace _13_WindowsForms
         {
             try
             {
-                var existingCars = GetNewCars(fileName);
-                Cars.AddRange(existingCars);
+                var newCars = GetNewCars(fileName);
+
+                // sprawdzamy czy nowy samochod juz nie istnieje
+                foreach (var car in newCars)
+                {
+                    //if(CheckIfCarExists(car) == false)
+                    if (!CheckIfCarExists(car))
+                    {
+                        Cars.Add(car);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -166,6 +175,23 @@ namespace _13_WindowsForms
                     new Car("Nissan", "Primera", 2000),
                     new Car("Fiat", "Panda", 1997),
                 };
+        }
+
+
+        private bool CheckIfCarExists(Car car)
+        {
+            foreach (var existingCar in Cars)
+            {
+                // zapobiegamy dodaniu samochodu z takim samym id
+                if (existingCar.Id == car.Id)
+                    return true;
+
+                // sprawdzamy czy istnieje juz samochod z taka sama nazwa, modelem i rokiem
+                if (existingCar.Name == car.Name && existingCar.Model == car.Model && existingCar.Year == car.Year)
+                    return true;
+            }
+
+            return false;
         }
     }
 }
