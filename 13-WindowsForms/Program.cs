@@ -12,7 +12,9 @@ namespace _13_WindowsForms
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new MainWindow());
+            var mainWindow = new MainWindow();
+
+            Application.Run(mainWindow);
         }
     }
 }

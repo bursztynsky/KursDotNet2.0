@@ -28,45 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            textBox1 = new TextBox();
+            selectFileButton = new Button();
+            dataView = new DataGridView();
+            CarName = new DataGridViewTextBoxColumn();
+            CarModel = new DataGridViewTextBoxColumn();
+            CarYear = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dataView).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // selectFileButton
             // 
-            button1.Location = new Point(350, 45);
-            button1.Name = "button1";
-            button1.Size = new Size(100, 50);
-            button1.TabIndex = 0;
-            button1.Text = "Click me!";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            selectFileButton.Location = new Point(350, 45);
+            selectFileButton.Name = "selectFileButton";
+            selectFileButton.Size = new Size(100, 50);
+            selectFileButton.TabIndex = 0;
+            selectFileButton.Text = "Select file to load data";
+            selectFileButton.UseVisualStyleBackColor = true;
+            selectFileButton.Click += selectFileButton_Click;
             // 
-            // textBox1
+            // dataView
             // 
-            textBox1.Location = new Point(96, 123);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(660, 200);
-            textBox1.TabIndex = 1;
+            dataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataView.Columns.AddRange(new DataGridViewColumn[] { CarName, CarModel, CarYear });
+            dataView.Location = new Point(130, 139);
+            dataView.Name = "dataView";
+            dataView.RowTemplate.Height = 25;
+            dataView.Size = new Size(553, 254);
+            dataView.TabIndex = 1;
+            // 
+            // CarName
+            // 
+            CarName.HeaderText = "CarName";
+            CarName.Name = "CarName";
+            // 
+            // CarModel
+            // 
+            CarModel.HeaderText = "CarModel";
+            CarModel.Name = "CarModel";
+            // 
+            // CarYear
+            // 
+            CarYear.HeaderText = "CarYear";
+            CarYear.Name = "CarYear";
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(textBox1);
-            Controls.Add(button1);
+            Controls.Add(dataView);
+            Controls.Add(selectFileButton);
             Name = "MainWindow";
             Text = "Moje glowne okienko";
+            FormClosed += MainWindow_FormClosed;
+            ((System.ComponentModel.ISupportInitialize)dataView).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private TextBox textBox1;
+        private Button selectFileButton;
+        private DataGridView dataView;
+        private DataGridViewTextBoxColumn CarName;
+        private DataGridViewTextBoxColumn CarModel;
+        private DataGridViewTextBoxColumn CarYear;
     }
 }

@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             textBox1 = new TextBox();
-            button1 = new Button();
+            selectFileButton = new Button();
+            saveButton = new Button();
             SuspendLayout();
             // 
             // textBox1
@@ -40,22 +41,33 @@
             textBox1.Size = new Size(432, 23);
             textBox1.TabIndex = 0;
             // 
-            // button1
+            // selectFileButton
             // 
-            button1.Location = new Point(181, 26);
-            button1.Name = "button1";
-            button1.Size = new Size(432, 70);
-            button1.TabIndex = 1;
-            button1.Text = "Select file";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            selectFileButton.Location = new Point(181, 26);
+            selectFileButton.Name = "selectFileButton";
+            selectFileButton.Size = new Size(432, 70);
+            selectFileButton.TabIndex = 1;
+            selectFileButton.Text = "Select file";
+            selectFileButton.UseVisualStyleBackColor = true;
+            selectFileButton.Click += buttonFileButton_Click;
+            // 
+            // saveButton
+            // 
+            saveButton.Location = new Point(181, 149);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(432, 38);
+            saveButton.TabIndex = 2;
+            saveButton.Text = "SAVE";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // FilePathWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 161);
-            Controls.Add(button1);
+            ClientSize = new Size(784, 199);
+            Controls.Add(saveButton);
+            Controls.Add(selectFileButton);
             Controls.Add(textBox1);
             Name = "FilePathWindow";
             Text = "Select file";
@@ -66,6 +78,7 @@
         #endregion
 
         private TextBox textBox1;
-        private Button button1;
+        private Button selectFileButton;
+        private Button saveButton;
     }
 }

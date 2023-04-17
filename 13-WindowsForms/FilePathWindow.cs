@@ -12,14 +12,42 @@ namespace _13_WindowsForms
 {
     public partial class FilePathWindow : Form
     {
-        public string FilePath { get; set; } 
+        public string FilePath { get; set; }
+        private readonly MainWindow _mainWindow;
 
-        public FilePathWindow()
+        public FilePathWindow(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // w metodach mozemy miec OPCJONALNE parametry
+        // jesli do argumentu dodam = domyslna wartosc
+        // to nie musze jej podawac przy odpalaniu
+        private void ShowError(string message = "YOU NEED TO SELECT A FILE!!!")
+        {
+            //MessageBox.Show("YOU NEED TO SELECT A FILE!!!", "Some title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(message, "Some title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            // Zanim zamkne okno to nie pozwalam na to by filePath nie zostal wybrany!
+            if (string.IsNullOrWhiteSpace(FilePath))
+            {
+                ShowError("You have to select a file to save!");
+
+                return;
+            }
+
+            // Mozemy zamknac okno z poziomu kodu w taki sposob
+            Close();
+
+            // Tutaj chcemy uruchomic na oknie matka ladowanie danych z naszego pliku
+            _mainWindow.LoadData(FilePath);
+        }
+
+        private void buttonFileButton_Click(object sender, EventArgs e)
         {
             // chce utworzyc obiekt klasy OpenFileDialog ktory umozliwia mi wybor recznie
             // przez systemowe okienko pliku
@@ -39,14 +67,13 @@ namespace _13_WindowsForms
             {
                 FilePath = openFileDialog.FileName;
 
-                MessageBox.Show(FilePath, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(FilePath, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // mam juz filePath wiec wyciagam textbox
                 var textBox = Controls.Find("textBox1", true)
                     .FirstOrDefault() as TextBox;
 
                 textBox.Text = FilePath;
-
             }
             else
             {
@@ -57,15 +84,6 @@ namespace _13_WindowsForms
                 // jbc sa wbudowane okienka do wiadomosci i np mozna tak:
                 ShowError();
             }
-        }
-
-        // w metodach mozemy miec OPCJONALNE parametry
-        // jesli do argumentu dodam = domyslna wartosc
-        // to nie musze jej podawac przy odpalaniu
-        private void ShowError(string message = "YOU NEED TO SELECT A FILE!!!")
-        {
-            //MessageBox.Show("YOU NEED TO SELECT A FILE!!!", "Some title", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            MessageBox.Show(message, "Some title", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
