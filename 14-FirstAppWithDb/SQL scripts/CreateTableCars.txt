@@ -1,0 +1,6 @@
+﻿CREATE TABLE Cars (
+    [Id] int not null identity primary key,
+    [Name] nvarchar(255),
+	[Model] nvarchar(255),
+	[Year] int,
+)

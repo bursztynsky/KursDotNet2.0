@@ -1,0 +1,4 @@
+﻿INSERT INTO Cars VALUES ('Toyota', 'Yaris', 2022)
+INSERT INTO Cars VALUES ('Audi', 'Q7', 1997)
+INSERT INTO Cars VALUES ('Fiat', 'Punto', 2022)
+INSERT INTO Cars VALUES ('Nissan', 'Primera', 1999)

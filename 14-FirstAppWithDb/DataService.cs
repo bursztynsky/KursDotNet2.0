@@ -11,8 +11,10 @@ namespace _14_FirstAppWithDb
 
         private readonly string _dbConnectionString = "Server=localhost;Database=firstAppWithDb;User Id=sa;Password=12345Abc;";
 
-        public List<Car> GetAllFromDb()
+        public void LoadDataFromDb()
         {
+            var allCars = new List<Car>();
+
             using var connection = new SqlConnection(_dbConnectionString);
 
             var command = new SqlCommand("select * from Cars", connection);
@@ -23,196 +25,58 @@ namespace _14_FirstAppWithDb
 
             while (reader.Read())
             {
-                MessageBox.Show(string.Format("{0}, {1}, {2}, {3}", reader[0], reader[1], reader[2], reader[3]));
-            }
-
-            return new List<Car>();
-        }
-
-        /// <summary>
-        /// This method will return new cars from provided file and 
-        /// </summary>
-        public void GetCarsFromFile(string fileName)
-        {
-            try
-            {
-                var newCars = GetNewCars(fileName);
-
-                // sprawdzamy czy nowy samochod juz nie istnieje
-                foreach (var car in newCars)
+                var car = new Car()
                 {
-                    //if(CheckIfCarExists(car) == false)
-                    if (!CheckIfCarExists(car))
-                    {
-                        Cars.Add(car);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        public void SaveCarsToFile()
-        {
-            var convertedCars = new List<string>();
-
-            foreach (var car in Cars)
-            {
-                convertedCars.Add(car.ToString());
-            }
-
-
-            File.WriteAllLines(_dbFilePath, convertedCars);
-        }
-
-        /// <summary>
-        /// This method will take cars from db and save it in the service
-        /// </summary>
-        public void InitData()
-        {
-            Cars = GetFromDb();
-        }
-
-        /// <summary>
-        /// This method will return a list of cars from provided cars, there will be no ids!
-        /// </summary>
-        private List<Car> GetNewCars(string fileName)
-        {
-            var result = new List<Car>();
-
-            var lines = File.ReadAllLines(fileName);
-
-            foreach (var line in lines)
-            {
-                if (string.IsNullOrWhiteSpace(line))
-                    continue;
-
-                var data = line.Split(';');
-                Console.WriteLine(string.Join(" ", data));
-
-                if (data.Length != 3)
-                    continue;
-
-                var convertResult = int.TryParse(data[2], out int year);
-
-                if (convertResult == false)
-                    continue;
-
-                if (year < 1800)
-                    continue;
-
-                var name = data[0];
-                var model = data[1];
-
-                var car = new Car(name, model, year);
-
-                result.Add(car);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// This method will return a list of cars from file database
-        /// </summary>
-        public List<Car> GetFromDb()
-        {
-            CreateDbFileIsNotExists();
-
-            var result = new List<Car>();
-
-            var lines = File.ReadAllLines(_dbFilePath);
-
-            foreach (var line in lines)
-            {
-                if (string.IsNullOrWhiteSpace(line))
-                    continue;
-
-                var data = line.Split(';');
-                Console.WriteLine(string.Join(" ", data));
-
-                if (data.Length != 4)
-                    continue;
-
-                // sprawdzam czy id da sie przekonwertowac
-                var convertResult = int.TryParse(data[0], out int id);
-
-                if (convertResult == false)
-                    continue;
-
-                // sprawdzam czy rok da sie przekonwertowac
-                convertResult = int.TryParse(data[3], out int year);
-
-                if (convertResult == false)
-                    continue;
-
-                // sprawdzam czy rok jest odpowiedni
-                if (year < 1800)
-                    continue;
-
-                var name = data[1];
-                var model = data[2];
-
-                var car = new Car(name, model, year);
-
-                result.Add(car);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// This method will create a db file if deosn't exist
-        /// </summary>
-        private void CreateDbFileIsNotExists()
-        {
-            // sprawdzamy czy istnieje directory (sciezka) do pliku
-            // jesli nie = tworzymy folder 'data'
-            if (!Directory.Exists("data"))
-            {
-                Directory.CreateDirectory("data");
-            }
-
-            if (!File.Exists(_dbFilePath))
-            {
-                var stream = File.Create(_dbFilePath);
-                stream.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// This method will return a list of cars that we want to create if there is no cars available
-        /// </summary>
-        private List<Car> SeedCars()
-        {
-            // Seed data czyli tzw. zasianie danymi
-            // Tzn. ze dla testow dodamy sobie juz jakies wartosci jesli zadne nie istnieja
-            return new List<Car>()
-                {
-                    new Car("Toyota", "Yaris", 2001),
-                    new Car("Audi", "Q7", 2021),
-                    new Car("Nissan", "Primera", 2000),
-                    new Car("Fiat", "Panda", 1997),
+                    Id = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    Model = reader.GetString(2),
+                    Year = reader.GetInt32(3),
                 };
-        }
 
-
-        private bool CheckIfCarExists(Car car)
-        {
-            foreach (var existingCar in Cars)
-            {
-                // zapobiegamy dodaniu samochodu z takim samym id
-                if (existingCar.Id == car.Id)
-                    return true;
-
-                // sprawdzamy czy istnieje juz samochod z taka sama nazwa, modelem i rokiem
-                if (existingCar.Name == car.Name && existingCar.Model == car.Model && existingCar.Year == car.Year)
-                    return true;
+                allCars.Add(car);
             }
 
-            return false;
+            Cars = allCars;
+        }
+
+        public Car GetCarFromRow(DataGridViewRow row)
+        {
+            var result = int.TryParse(row.Cells["CarId"].Value.ToString(), out var id);
+
+            if (result == false)
+            {
+                MessageBox.Show("ERROR");
+
+                return null;
+            }
+
+            if (id <= 0)
+            {
+                MessageBox.Show("ERROR");
+
+                return null;
+            }
+
+            // LINQ -> to biblioteka ktora dodaje nam zajebiscie wygodne metody do korzytsania na
+            // tablicach i kolekcjach
+            // Mozemy chociazby znalezc metode First oraz FirstOrDefault
+
+            // First() -> znajduje pierwszy obiekt spelniajacy regule ktora przekazuje jako argument
+            // UWAGA: First WALI BLEDEM jesli nie znajdzie nic pasujacego
+            //var car = Cars.First(car => car.Id == id);
+
+            // FirstOrDefault() -> znajduje pierwszy obiekt spelniajacy regule ktora przekazuje jako argument
+            // UWAGA: Nie wali bledem ale zwraca null jesli nie znalazl danej pozycji
+            var car = Cars.FirstOrDefault(car => car.Id == id);
+
+            if (car == null)
+            {
+                MessageBox.Show("CAR IS NULL");
+
+                return null;
+            }
+
+            return car;
         }
     }
 }

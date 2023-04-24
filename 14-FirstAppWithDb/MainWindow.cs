@@ -1,5 +1,6 @@
 using _14_FirstAppWithDb.Models;
 using System.Text;
+using System.Windows.Forms;
 
 namespace _14_FirstAppWithDb
 {
@@ -13,35 +14,7 @@ namespace _14_FirstAppWithDb
 
             _dataService = new DataService();
 
-            InitDataView();
-        }
-
-        public void LoadData(string filePath)
-        {
-            _dataService.GetCarsFromFile(filePath);
-
-            ResetDataView();
-        }
-
-        private void selectFileButton_Click(object sender, EventArgs e)
-        {
-            var filePathWindow = new FilePathWindow(this);
-
-            //filePathWindows.Show(); // otwiera okno I NIE BLOKUE OKNA-MATKI wiec mozesz utworzyc miliard tych okienek
-            filePathWindow.ShowDialog(); // blokuje okno matka wiec nie moge klikac juz w poprzednie okno
-            // poki nie zamkne tego
-
-            var filePath = filePathWindow.FilePath;
-
-            if (string.IsNullOrWhiteSpace(filePath))
-            {
-                return;
-            }
-        }
-
-        private void InitDataView()
-        {
-            _dataService.InitData();
+            _dataService.LoadDataFromDb();
 
             ResetDataView();
         }
@@ -60,6 +33,7 @@ namespace _14_FirstAppWithDb
                 var newRowId = dataView.Rows.Add();
                 var newRow = dataView.Rows[newRowId];
 
+                newRow.Cells["CarId"].Value = car.Id;
                 newRow.Cells["CarName"].Value = car.Name;
                 newRow.Cells["CarModel"].Value = car.Model;
                 newRow.Cells["CarYear"].Value = car.Year;
@@ -68,12 +42,23 @@ namespace _14_FirstAppWithDb
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _dataService.SaveCarsToFile();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void editButton_Click(object sender, EventArgs e)
         {
-            _dataService.GetAllFromDb();
+            var dataView = Controls
+                .Find("dataView", true)
+                .FirstOrDefault()
+            as DataGridView;
+
+            if (dataView.SelectedRows.Count == 1)
+            {
+                DataGridViewRow row = dataView.SelectedRows[0];
+
+                var selectedCar = _dataService.GetCarFromRow(row);
+
+                MessageBox.Show(selectedCar.Name + " " + selectedCar.Model);
+            }
         }
     }
 }

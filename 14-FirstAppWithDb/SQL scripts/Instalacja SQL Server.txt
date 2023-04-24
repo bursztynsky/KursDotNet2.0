@@ -1,0 +1,17 @@
+1. Instalujesz serwer, link: https://go.microsoft.com/fwlink/p/?linkid=2215158&clcid=0x415&culture=pl-pl&country=pl
+
+Przy instalacji wybierasz opcje BASIC, idziesz dalej dalej dalej dalej
+Jak bedzie sie pytal o to czy chcesz authentication po Windows, czy zwyklmy SQL, to wybierz SQL i utworz uzytkownika sa z jakims haslem
+
+2. Laczysz sie do bazy danych z uzyciem aplikacji SSMS (https://aka.ms/ssmsfullsetup)
+Podajesz w miejscu SERVER kropke (lub piszesz localhost) i klikasz Connect
+
+3. Po polaczeniu rozwijasz folder Databases i klikasz na tym folderze prawy przycisk oraz "New Database", podajesz nazwe bazy i klikasz ok
+
+4. Rozwin liste Databases (jesli nie widac twojej nowo utworzonej to kliknij F5) i na twojej bazie kliknij prawy przycisk i wybierz "New Query"
+
+5. W otworzonym oknie wklej kod CreateTableCars.txt z projektu 14-FirstAppWithDb i odpal kod klikajac F5 (zielony przycisk Execute)
+
+6. Usun kod i dodaj teraz kod z pliku InsertCars.txt z projektu 14-FirstAppWithDb i odpal kod klikajac F5 (zielony przycisk Execute)
+
+7. Przejdz do projektu aplikacji i w DataService.cs w linii 12 popraw ConnecitonStirng na swoje dane kompa (zmien nazwe bazy jesli trzeba oraz uzytkownika i haslo, serwer jest ok)

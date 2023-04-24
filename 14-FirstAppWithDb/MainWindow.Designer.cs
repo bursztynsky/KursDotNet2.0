@@ -28,68 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
-            selectFileButton = new Button();
             dataView = new DataGridView();
+            CarId = new DataGridViewTextBoxColumn();
             CarName = new DataGridViewTextBoxColumn();
             CarModel = new DataGridViewTextBoxColumn();
             CarYear = new DataGridViewTextBoxColumn();
-            button1 = new Button();
+            editButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataView).BeginInit();
             SuspendLayout();
             // 
-            // selectFileButton
-            // 
-            selectFileButton.Location = new Point(350, 45);
-            selectFileButton.Name = "selectFileButton";
-            selectFileButton.Size = new Size(100, 50);
-            selectFileButton.TabIndex = 0;
-            selectFileButton.Text = "Select file to load data";
-            selectFileButton.UseVisualStyleBackColor = true;
-            selectFileButton.Click += selectFileButton_Click;
-            // 
             // dataView
             // 
+            dataView.AllowUserToAddRows = false;
+            dataView.AllowUserToDeleteRows = false;
+            dataView.AllowUserToResizeRows = false;
             dataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataView.Columns.AddRange(new DataGridViewColumn[] { CarName, CarModel, CarYear });
+            dataView.Columns.AddRange(new DataGridViewColumn[] { CarId, CarName, CarModel, CarYear });
             dataView.Location = new Point(130, 139);
+            dataView.MultiSelect = false;
             dataView.Name = "dataView";
+            dataView.ReadOnly = true;
             dataView.RowTemplate.Height = 25;
             dataView.Size = new Size(553, 254);
             dataView.TabIndex = 1;
             // 
+            // CarId
+            // 
+            CarId.HeaderText = "Id";
+            CarId.Name = "CarId";
+            CarId.ReadOnly = true;
+            // 
             // CarName
             // 
-            CarName.HeaderText = "CarName";
+            CarName.HeaderText = "Name";
             CarName.Name = "CarName";
+            CarName.ReadOnly = true;
             // 
             // CarModel
             // 
-            CarModel.HeaderText = "CarModel";
+            CarModel.HeaderText = "Model";
             CarModel.Name = "CarModel";
+            CarModel.ReadOnly = true;
             // 
             // CarYear
             // 
-            CarYear.HeaderText = "CarYear";
+            CarYear.HeaderText = "Year";
             CarYear.Name = "CarYear";
+            CarYear.ReadOnly = true;
             // 
-            // button1
+            // edtiButton
             // 
-            button1.Location = new Point(566, 59);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            editButton.Location = new Point(275, 70);
+            editButton.Name = "edtiButton";
+            editButton.Size = new Size(75, 23);
+            editButton.TabIndex = 2;
+            editButton.Text = "Edit";
+            editButton.UseVisualStyleBackColor = true;
+            editButton.Click += editButton_Click;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            Controls.Add(editButton);
             Controls.Add(dataView);
-            Controls.Add(selectFileButton);
             Name = "MainWindow";
             Text = "Moje glowne okienko";
             FormClosed += MainWindow_FormClosed;
@@ -98,12 +101,11 @@
         }
 
         #endregion
-
-        private Button selectFileButton;
         private DataGridView dataView;
         private DataGridViewTextBoxColumn CarName;
         private DataGridViewTextBoxColumn CarModel;
         private DataGridViewTextBoxColumn CarYear;
-        private Button button1;
+        private DataGridViewTextBoxColumn CarId;
+        private Button editButton;
     }
 }
