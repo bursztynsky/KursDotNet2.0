@@ -1,0 +1,10 @@
+create table Users
+(
+	Id int primary key identity,
+	[Name] nvarchar(200),
+	[Surname] nvarchar(200),
+	[Email] nvarchar(50) unique
+)
+
+insert into Users values('tomasz', 'bursztynski', 'bursztynski.tomasz@gmail.com')
+insert into Users values('andrzej', 'andrzejewski', 'andrzej@gmail.com')
